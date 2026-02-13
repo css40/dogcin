@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+</head>
+
+<body class="page">
+  <div class="shade" aria-hidden="true"></div>
+
+  <main class="layout">
+    <section class="card" aria-label="Login">
+
+      <!-- LOGO (imagen) -->
+      <img
+        class="logo"
+        src="{{ url_for('static', filename='img/logo.png') }}"
+        alt="Black Clover"
+      >
+
+      <form class="form" method="POST" autocomplete="off">
+        <label class="field">
+          <span>Usuario</span>
+          <input name="username" type="text" placeholder="Usuario" required>
+        </label>
+
+        <label class="field">
+          <span>Contraseña</span>
+          <input name="password" type="password" placeholder="Contraseña" required>
+        </label>
+
+        <button class="btn" type="submit">Entrar</button>
+
+        {% if error %}
+          <p class="msg">{{ error }}</p>
+        {% endif %}
+      </form>
+    </section>
+  </main>
+</body>
+</html>

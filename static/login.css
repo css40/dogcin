@@ -1,0 +1,143 @@
+:root{
+  --text: rgba(255,255,255,.92);
+  --muted: rgba(255,255,255,.72);
+  --line: rgba(255,255,255,.14);
+  --panel: rgba(0,0,0,.52);
+  --panel-strong: rgba(0,0,0,.62);
+}
+
+*{ box-sizing: border-box; }
+html, body{ height: 100%; }
+
+body{
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  color: var(--text);
+}
+
+/* ===== Fondo ===== */
+.page{
+  min-height: 100vh;
+  width: 100%;
+  background-image: url("/static/img/fondo.png"); /* cambia a fondo.png si es png */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+/* Sombra para que se lea el panel sin tapar mucho */
+.shade{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(0,0,0,.18), rgba(0,0,0,.72) 88%),
+    linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.45));
+}
+
+.layout{
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: clamp(14px, 4vw, 32px);
+}
+
+/* Card responsive */
+.card{
+  width: min(92vw, 420px);
+  border-radius: 18px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  box-shadow: 0 22px 70px rgba(0,0,0,.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+
+/* LOGO responsive (se adapta en cel) */
+.logo{
+  width: min(86%, 360px);
+  height: auto;
+  display: block;
+  margin: clamp(16px, 4vw, 22px) auto 10px;
+  filter: drop-shadow(0 14px 18px rgba(0,0,0,.65));
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Form */
+.form{
+  display: grid;
+  gap: 14px;
+  padding: 0 clamp(16px, 4.2vw, 26px) clamp(16px, 4.2vw, 26px);
+}
+
+.field{
+  display: grid;
+  gap: 8px;
+}
+
+.field span{
+  font-size: clamp(.78rem, 2.6vw, .86rem);
+  color: var(--muted);
+  letter-spacing: .10em;
+  text-transform: uppercase;
+}
+
+.field input{
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(0,0,0,.60);
+  border: 1px solid rgba(255,255,255,.14);
+  color: var(--text);
+  outline: none;
+  font-size: 16px; /* evita zoom iPhone */
+}
+
+.field input:focus{
+  border-color: rgba(255,255,255,.30);
+  box-shadow: 0 0 0 4px rgba(255,255,255,.08);
+  background: var(--panel-strong);
+}
+
+/* Botón */
+.btn{
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(0,0,0,.72);
+  border: 1px solid rgba(255,255,255,.18);
+  color: rgba(255,255,255,.92);
+  font-weight: 900;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform .12s ease, border-color .12s ease, background .12s ease;
+}
+
+.btn:hover{
+  transform: translateY(-1px);
+  border-color: rgba(255,255,255,.30);
+  background: rgba(0,0,0,.80);
+}
+
+.btn:active{ transform: translateY(0px); }
+
+/* Error */
+.msg{
+  margin: 0;
+  color: #ff4c6a;
+  font-weight: 800;
+  text-align: center;
+}
+
+/* ===== Ajustes para móvil (encuadre del fondo) ===== */
+@media (max-width: 480px){
+  .page{
+    background-position: 30% center; /* ajustable */
+  }
+  .card{ border-radius: 16px; }
+}
